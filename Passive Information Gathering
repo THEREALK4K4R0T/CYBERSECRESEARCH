@@ -6,6 +6,7 @@ Foot printing identifies more information in the websites etc, than Recon.
 
 # **What we are looking for ?**
 
+Basically the following can create a very detailed information regarding the target 
 IP address
 
 Directories hidden
@@ -18,7 +19,7 @@ Phone number
 
 Physical Address
 
-Web technologies used on the website
+Web technologies used on the website (I'd personally recomment wappalyzer as it is pretty easy but you can go for something else XD)
 
 ## Passive Recon :
 
@@ -127,7 +128,7 @@ Google Hacking Database
 1. Harvester tool - preinstalled with Kali
 2. utilises search engines / DB 
 3. gathers names. emails, etc.
-4. used Anubis | Bing API | Censys | - can be used for OSINT
+4. use Anubis | Bing API | Censys | - can be used for OSINT
 - Passive and Active Info Gathering
 1. -d domain name | -b Source 
 
@@ -140,7 +141,7 @@ USAGE : theharvester -d (domain), -b (searchengine1,searchengine2)
 - (haveibeenpawned.com - show the databreach on the websites etc.)
 - 
 
-Research : 
+Research to be done and added later on : 
 
 DNS ZONE TRANSFER
 
