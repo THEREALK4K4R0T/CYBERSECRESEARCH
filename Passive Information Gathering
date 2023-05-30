@@ -1,0 +1,149 @@
+# Passive Information Gathering 
+
+1. Website Recon and Foot printing : 
+
+Foot printing identifies more information in the websites etc, than Recon.
+
+# **What we are looking for ?**
+
+IP address
+
+Directories hidden
+
+Names
+
+Email 
+
+Phone number 
+
+Physical Address
+
+Web technologies used on the website
+
+## Passive Recon :
+
+1. Obtain the IP address
+
+Open terminal and use **Host** command.
+
+#some websites can show 2 ipv4 addresses as they are protected by **cloudflare which is Firewall / Proxy.**
+
+1. Social media handles are Useful.
+2. **robots.txt** file (somewhere where crawlers are not able to go, Search engines do not index the documents)
+3. **sitemap.xml** | **sitemaps.xml** (xml file that is used to provide search engines with organised way of indexing the website)
+4. browser plugins like wappalyzer | builtwith |  (Technology profiler that mainly emphasize on the technology that the website is built with)
+You can also use **whatweb** in terminal (preferred)
+5. you can also download the entire website using **HTTrack** (found on the internet). you can download it using apt-get instal webhttrack (port 8080 on kali linux) | proxy can stop it.
+
+## WHOIS enumeration :
+
+man whois (for manual)
+
+for basic info as when it was registered and also the information as to who owns it.  
+
+## Enumeration with NetCraft (Basically the whole thing)
+
+1. collation all information that we were able to obtain manually.
+2. services > internet data mining > what the site running ?
+3. Sort’s out most of the things !
+4. Lookout for these things a. Validity of SSL cert | certificate transparency 
+5. SSLv3/Poodle | Heartbleed expoit also are provided in the information
+6. look for webtracker , that tells us which is active for the site.
+
+Just the summary of passive recon of all the manual methods.
+
+## DNS RECON
+
+Why : records associated with the domain, (how a target website in configured to run).
+
+CloudFlare does not hide proxy mail server addresses.
+
+1. tool (DNS RECON ) search on google, it is a python script that let us check all name server records for zone transfers etc. 
+2. Prepackaged with kali linux (dnsrecon —help)
+3. usage : dnsrecon -d (website.ext)
+4. Name Server Addresses , A record (ipv4 record), AAAA (ipv6 addresses) MX (mail server addresses), NS(Name Server), TXT record (google site verification generally)
+
+### DNSDUMPSTER
+
+1. Better version of DNSRecon
+2. can find it on google
+3. even identify subdomains
+4. Excel spreadsheet of the website or even a graph (shows the domains and how they work generally) 
+
+## WAF with Wafw00f
+
+Web Application Firewall (WAF)
+
+1. Web Application Firewall Fingerprinting Tool - Wafwoof
+
+How does Wafwoof work ? 
+
+1. Sends a normal HTTP request and analyse the response, this identifies a number of WAF solutions.
+2. If not succession, sends a number of potentially malicious HTTP request and uses a simple logic to deduce which WAF it is. 
+3. If not successful, analyses the responses previously returned and then uses another simple algorithm to guess if a WAF or security solution is actively responding to the attacks. 
+
+                USAGE : wafW00f (domain.ext)
+
+The site domain,ext is behind (itiswhatitis) WAF.
+
+#actual usage = wafw00f https://thiswebsitetotest.ext
+
+-a or -findall to search for all the number possible waf’s
+
+-v for increasing verbosity
+
+                 USAGE : wafW00f (domain.ext) -a 
+
+# Sublist3r
+
+Useful for finding more subdomains
+
+1. sublist3r -d domain.org -e google,yahoo
+2. Uses OSINT | helps bughunters gather domains for information gathering
+3. -d domain | -b bruteforce | -p ports | -v verbose | -t threads | -e engines | -o output | -h help  
+4. google threshold bypass - use VPN
+5. donot use -e if you want all the results  
+6. sometime the requests are blocked by virustotal 
+
+## Google Dorking (GHDB)
+
+Google Hacking Database
+
+1. Identify information 
+2. Google Dorks (Google Hacking) - focusing on domains as out targets - using google search filters
+3. [Google.com](http://Google.com) - use various dorks like | site:ine.com | inurl:admin (show that has url for admin)| site:*.ine.com (subdomains for INE) | intitle:admin (search in title) | filetype:pdf (search PDF’s from the intended website) | you can also search for specific employees.
+4. intitle:index of (directory listing - production site - view the contects of directory)
+5. Cache:ine.com (shows the older version of websites - not usually found)
+6. waybackmachine (snapshot of website and stores it) - might have potenitally important info like email adress, phone, etc. 
+7. inurl:auth_user_file.txt - password of the accounts  - sometimes website might misconfigure it by mistake. 
+8. inurl:passwd.txt | leaked password for the users and etc. 
+9. site:gov.* intitle:”index of” *.csv
+10. site:gov.* intitle:”index of” *.csv passwords
+11. filtering on exploit.db website (one stop shop for potentially vulnerable files)
+12. wp config files contain credentials to the MySQL db inuel:wp-config.bak
+
+## Harvesting Email Address using Harvester
+
+1. Harvester tool - preinstalled with Kali
+2. utilises search engines / DB 
+3. gathers names. emails, etc.
+4. used Anubis | Bing API | Censys | - can be used for OSINT
+- Passive and Active Info Gathering
+1. -d domain name | -b Source 
+
+USAGE : theharvester -d (domain), -b (searchengine1,searchengine2)
+
+## LEAKED PASSWORD DATABASE
+
+- USING LEAKED PASSWORD DB ONLINE
+- (use the harvester output for references)
+- (haveibeenpawned.com - show the databreach on the websites etc.)
+- 
+
+Research : 
+
+DNS ZONE TRANSFER
+
+trace path using MTR
+
+Password Spray Attack
